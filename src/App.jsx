@@ -1,7 +1,9 @@
+import ModeSelect from "./components/ModeSelect";
+
 function App() {
   return (
     <>
-      <div>thachthaiminh</div>
+      <ModeSelect />
     </>
   );
 }

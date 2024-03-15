@@ -1,9 +1,9 @@
-import ModeSelect from "./components/ModeSelect";
+import AppBar from "./components/Board";
 
 function App() {
   return (
     <>
-      <ModeSelect />
+      <AppBar />
     </>
   );
 }

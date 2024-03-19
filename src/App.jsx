@@ -1,4 +1,4 @@
-import AppBar from "./components/Board";
+import AppBar from "~/components/Boards/Board";
 
 function App() {
   return (

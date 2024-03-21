@@ -8,20 +8,6 @@ import {
 } from "@mui/icons-material";
 import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from "@mui/material";
 
-const MENU_STYLES = {
-  color: "primary.main",
-  bgcolor: "white",
-  border: "none",
-  px: "5px",
-  borderRadius: "4px",
-  "& .MuiSvgIcon-root": {
-    color: "primary.main",
-  },
-  "&:hover": {
-    bgcolor: "primary.50",
-  },
-};
-
 function BoardBar() {
   return (
     <Box
@@ -34,7 +20,9 @@ function BoardBar() {
         gap: 2,
         px: 2,
         overflowX: "auto",
-        borderTop: "1px solid #00bfa5",
+        bgcolor: (theme) =>
+          theme.palette.mode === "dark" ? "#34495e" : "#1976d2",
+        borderBottom: "1px solid white",
       }}
     >
       <Box
@@ -45,47 +33,116 @@ function BoardBar() {
         }}
       >
         <Chip
-          sx={{ MENU_STYLES }}
+          sx={{
+            color: "white",
+            bgcolor: "transparent",
+            border: "none",
+            px: "5px",
+            borderRadius: "4px",
+            ".MuiSvgIcon-root": {
+              color: "white",
+            },
+            "&:hover": {
+              bgcolor: "primary.50",
+            },
+          }}
           icon={<Dashboard />}
           label="thachthaiminh"
           clickable
         />
         <Chip
-          sx={{ MENU_STYLES }}
+          sx={{
+            color: "white",
+            bgcolor: "transparent",
+            border: "none",
+            px: "5px",
+            borderRadius: "4px",
+            ".MuiSvgIcon-root": {
+              color: "white",
+            },
+            "&:hover": {
+              bgcolor: "primary.50",
+            },
+          }}
           icon={<VpnLock />}
           label="Public/Private Workspace"
           clickable
         />
         <Chip
-          sx={{ MENU_STYLES }}
+          sx={{
+            color: "white",
+            bgcolor: "transparent",
+            border: "none",
+            px: "5px",
+            borderRadius: "4px",
+            ".MuiSvgIcon-root": {
+              color: "white",
+            },
+            "&:hover": {
+              bgcolor: "primary.50",
+            },
+          }}
           icon={<AddToDrive />}
           label="Add To Google Drive"
           clickable
         />
         <Chip
-          sx={{ MENU_STYLES }}
+          sx={{
+            color: "white",
+            bgcolor: "transparent",
+            border: "none",
+            px: "5px",
+            borderRadius: "4px",
+            ".MuiSvgIcon-root": {
+              color: "white",
+            },
+            "&:hover": {
+              bgcolor: "primary.50",
+            },
+          }}
           icon={<Bolt />}
           label="Automation"
           clickable
         />
         <Chip
-          sx={{ MENU_STYLES }}
+          sx={{
+            color: "white",
+            bgcolor: "transparent",
+            border: "none",
+            px: "5px",
+            borderRadius: "4px",
+            ".MuiSvgIcon-root": {
+              color: "white",
+            },
+            "&:hover": {
+              bgcolor: "primary.50",
+            },
+          }}
           icon={<FilterAlt />}
           label="Filters"
           clickable
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Button variant="outlined" startIcon={<PersonAdd />}>
+        <Button
+          sx={{ color: "white", borderColor: "white" }}
+          variant="outlined"
+          startIcon={<PersonAdd />}
+        >
           Invite
         </Button>
         <AvatarGroup
           max={7}
           sx={{
+            gap: "10px",
             "& .MuiAvatar-root": {
               width: 34,
               height: 34,
               fontSize: 16,
+              border: "none",
+              color: "white",
+              cursor: "pointer",
+              "&:first-of-type": { bgcolor: "#a4b0be" },
             },
           }}
         >

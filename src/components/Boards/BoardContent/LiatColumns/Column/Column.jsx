@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   AddCard,
   Cloud,
@@ -21,8 +22,20 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import ListCards from "./ListCards/ListCards";
+import { mapOrder } from "~/utils/sort";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
-function Column() {
+function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } });
+
+  const dndKitColumnStyles = {
+    touchAction: "none",
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -31,8 +44,14 @@ function Column() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
   return (
     <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: "300px",
         maxWidth: "300px",
@@ -62,7 +81,7 @@ function Column() {
             cursor: "pointer",
           }}
         >
-          Column title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title="More options">
@@ -129,7 +148,7 @@ function Column() {
         </Box>
       </Box>
 
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       <Box
         sx={{

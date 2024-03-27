@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   AddToDrive,
   Bolt,
@@ -7,8 +8,9 @@ import {
   VpnLock,
 } from "@mui/icons-material";
 import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from "@mui/material";
+import { capitalizeFirstLetter } from "~/utils/formatter";
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -46,7 +48,7 @@ function BoardBar() {
             },
           }}
           icon={<Dashboard />}
-          label="thachthaiminh"
+          label={board?.title}
           clickable
         />
         <Chip
@@ -64,7 +66,7 @@ function BoardBar() {
             },
           }}
           icon={<VpnLock />}
-          label="Public/Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         />
         <Chip

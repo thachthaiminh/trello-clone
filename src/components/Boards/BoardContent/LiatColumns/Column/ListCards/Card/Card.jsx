@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Attachment, Comment, Group } from "@mui/icons-material";
 import {
   Button,
@@ -8,7 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 
-function TrelloCard() {
+function TrelloCard({ card }) {
+  const shouldShowCardActions = () => {
+    return (
+      !!card?.memberIds?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
+    );
+  };
   return (
     <Card
       sx={{
@@ -17,25 +25,30 @@ function TrelloCard() {
         overflow: "unset",
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://cly.1cdn.vn/2020/07/11/congly-vn_son-tung-m-tp-gay-bat-ngo-voi-tuyen-bo-nghi-hat-sau-30-tuoi-hinh-anh0820614933.jpg"
-        title="green iguana"
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
+
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography>thachthaiminh</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions sx={{ p: "0 4px 8px 4px " }}>
-        <Button size="small" startIcon={<Group />}>
-          20
-        </Button>
-        <Button size="small" startIcon={<Comment />}>
-          20
-        </Button>
-        <Button size="small" startIcon={<Attachment />}>
-          20
-        </Button>
-      </CardActions>
+      {shouldShowCardActions() && (
+        <CardActions sx={{ p: "0 4px 8px 4px " }}>
+          {!!card?.memberIds?.length && (
+            <Button size="small" startIcon={<Group />}>
+              {!!card?.memberIds?.length}
+            </Button>
+          )}
+          {!!card?.comments?.length && (
+            <Button size="small" startIcon={<Comment />}>
+              {!!card?.comments?.length}
+            </Button>
+          )}
+          {!!card?.attachments?.length && (
+            <Button size="small" startIcon={<Attachment />}>
+              {!!card?.attachments?.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </Card>
   );
 }

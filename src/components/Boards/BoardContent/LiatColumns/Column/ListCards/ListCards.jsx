@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import TrelloCard from "./Card/Card";
 
-function ListCards() {
+function ListCards({ cards }) {
   return (
     <Box
       sx={{
@@ -25,7 +26,9 @@ function ListCards() {
         },
       }}
     >
-      <TrelloCard />
+      {cards?.map((card) => (
+        <TrelloCard key={card._id} card={card} />
+      ))}
     </Box>
   );
 }
